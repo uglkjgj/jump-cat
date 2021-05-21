@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Level/Level.gd" type="Script" id=2]
+[ext_resource path="res://Graphics/Other/Big_Bottom_Typeface_Normal.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 78.2907, 22.7918 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
+
+[node name="Level" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.976471, 0.941176, 0.882353, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Horizon" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = 438.0
+margin_right = -1.0
+margin_bottom = -277.0
+color = Color( 0.286275, 0.156863, 0.0588235, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 212.822, 433.821 )
+collision_mask = 6
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 212.28, 543.218 )
+collision_layer = 2
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Score" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -31.0
+margin_top = 25.0
+margin_right = 31.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.290196, 0.156863, 0.0470588, 1 )
+text = "Score"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="ForegroundStartPos" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="ForegroundStartPos"]
+position = Vector2( 1356.49, 683.679 )
+
+[node name="Position2D2" type="Position2D" parent="ForegroundStartPos"]
+position = Vector2( 1359.55, 626.441 )
+
+[node name="Position2D3" type="Position2D" parent="ForegroundStartPos"]
+position = Vector2( 1356.83, 562.206 )
+
+[node name="BackgroundStartPos" type="Node2D" parent="."]
+position = Vector2( 1.22119, 2.70261 )
+
+[node name="Position2D" type="Position2D" parent="BackgroundStartPos"]
+position = Vector2( 1353.77, 209.179 )
+
+[node name="Position2D2" type="Position2D" parent="BackgroundStartPos"]
+position = Vector2( 1351.96, 129.492 )
+
+[node name="ForegroundTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="BackgroundTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
+[connection signal="timeout" from="ForegroundTimer" to="." method="_on_ForegroundTimer_timeout"]
+[connection signal="timeout" from="BackgroundTimer" to="." method="_on_BackgroundTimer_timeout"]

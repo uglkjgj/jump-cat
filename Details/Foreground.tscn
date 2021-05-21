@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Graphics/Other/details/leaf3.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Other/details/leaf2.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Other/details/grass1.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Other/details/grass2.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Other/details/leaf1.png" type="Texture" id=5]
+[ext_resource path="res://Details/Foreground.gd" type="Script" id=6]
+[ext_resource path="res://Graphics/Other/details/leaf4.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "leaf3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "grass2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "leaf2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "leaf1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "leaf4",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "grass1",
+"speed": 5.0
+} ]
+
+[node name="AnimatedSprite" type="AnimatedSprite"]
+position = Vector2( 1373.56, 590.61 )
+frames = SubResource( 1 )
+animation = "grass2"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
